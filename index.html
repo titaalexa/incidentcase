@@ -1870,7 +1870,7 @@ function confirmDlg(t,body,ok,fn,danger,cl){const o=document.createElement('div'
  o.onclick=e=>{if(e.target===o)close()};o.querySelector('#cd-c').onclick=close;o.querySelector('#cd-o').onclick=()=>{close();fn()};o.querySelector('#cd-o').focus()}
 function askPub(){const t=$('m-t').value.trim(),e=$('ro-e');roClear();{let bad=0;if(!t){roShow('t','Add a title.');bad=1}if(!txt('m-ps')){roShow('ps','Add the memo or policy text before publishing.');bad=1}if(bad)return}
  const ty=$('m-ty').value==='Memorandum'?'memorandum':'policy';
- confirmDlg('Publish this '+ty+'?','<div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--accent);flex:none;margin-top:2px">'+ic('info',18)+'</span><p style="margin:0">Every employee will be notified and must read and acknowledge it. It appears in Policies for everyone as soon as you publish.</p></div>','Publish',()=>saveRo(1))}
+ confirmDlg('Publish this '+ty+'?','<p style="margin:0">Every employee will be notified and must read and acknowledge it. It appears in Policies for everyone as soon as you publish.</p>','Publish',()=>saveRo(1))}
 function roSnap(){const g=i=>{const e=document.getElementById(i);if(!e)return '';return e.tagName==='DIV'?(e.innerHTML||'').replace(/<br\s*\/?>/g,'').trim():e.value};const d=D['m-ps']||{};return JSON.stringify([g('m-t'),g('m-ty'),g('m-cat'),g('m-ef'),g('m-rf'),g('m-ps'),(d.f||[]).join('|'),(d.l||[]).length])}
 const roDirty=()=>!!(S.ro&&S.roS&&document.getElementById('m-t')&&roSnap()!==S.roS);
 (function(){const _r=render;render=function(){_r.apply(this,arguments);if(!S.ro){S.roS=null;return}setTimeout(()=>{if(S.ro&&document.getElementById('m-t')&&!S.roS)S.roS=roSnap()},120)};
